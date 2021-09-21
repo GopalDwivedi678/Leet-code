@@ -1,0 +1,19 @@
+class Solution:
+    def trap(self, h: List[int]) -> int:
+        x=0
+        i=0
+        while i<len(h):
+            if h[i]==0:
+                i+=1
+                continue
+            j=i+1
+            while j<len(h):
+                if h[i]>max(h[j:]):
+                    h[i]=max(h[j:])
+                if h[j]>=h[i]:
+                    for k in range(i,j):
+                        x+=(h[i]-h[k])
+                    break
+                j+=1
+            i=j
+        return x
